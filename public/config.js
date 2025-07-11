@@ -1,0 +1,6 @@
+const config = (() => {
+    return {
+        "VUE_APP_ENV": "distrib",
+        "VUE_APP_THEME":'{ "--dark": "#212121", "--light": "#F6F6F6", "--white": "#fff", "--gray": "#464E5F", "--gray-1": "#B5B5C3", "--gray-2": "#D6D6E0", "--gray-3": "#D9D9D9", "--gray-4": "#E5EAEE", "--gray-5": "#F3F6F9", "--primary": "#3699FF", "--secondary": "rgba(54,153,255,0.12)", "--info": "#3699FF", "--warning": "#FFA800", "--danger": "#F1416C", "--success": "#1BC5BD", "--vert": "#1BC5BD", "--stepper-color": "#cdfaf8", "--expandable-items-bg": "#f8fbff" }'
+    };
+})();

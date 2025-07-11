@@ -1,0 +1,43 @@
+{
+  "main": {
+    "title": "Welcome to the Application",
+    "notFoundPage": {
+      "message": "Oops! Page not found.",
+      "backToHome": "Go Home"
+    }
+  },
+  "salles": {
+    "filters": {
+      "filters": "Filters",
+      "building": "Building",
+      "Ability": "ability",
+      "projector": "Projector",
+      "whiteboard": "Whiteboard",
+      "resetBtn": "Reset",
+      "searchBtn": "Search"
+    },
+    "list": {
+      "title": "List of salles",
+      "addSalleBtn": "Add a salle",
+      "searchPlaceholder": "Search for a salle",
+      "columns": {
+        "name": "Name",
+        "building": "Building",
+        "capacity": "Capacity",
+        "projector": "Projector",
+        "whiteboard": "Whiteboard"
+      }
+    },
+    "edit": {
+      "addSalleTitle": "Add a salle",
+      "editSalleTitle": "Edit salle",
+      "name": "Salle Name",
+      "building": "Building",
+      "capacity": "Capacity",
+      "projector": "Projector",
+      "whiteboard": "Whiteboard",
+      "saveBtn": "Save",
+      "cancelBtn": "Cancel"
+    }
+  }
+}

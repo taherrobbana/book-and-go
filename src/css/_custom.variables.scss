@@ -1,0 +1,194 @@
+:root {
+  --dark: #212121;
+  --light: #F6F6F6;
+  --white: #fff;
+  --gray: #464E5F;
+  --gray-1: #B5B5C3;
+  --gray-2: #D6D6E0;
+  --gray-3: #D9D9D9;
+  --gray-4: #E5EAEE;
+  --gray-5: #F3F6F9;
+  --primary: #3699FF;
+  --secondary: rgba(54,153,255,0.12);
+  --info: #3699FF;
+  --warning: #FFA800;
+  --danger: #F1416C;
+  --success: #1BC5BD;
+  --vert: #1BC5BD;
+  --stepper-color:#cdfaf8;
+  --expandable-items-bg:#f8fbff;
+}
+
+// Colors Variable
+$dark: var(--dark) !default;
+$light: var(--light) !default;
+$white: var(--white) !default;
+$gray: var(--gray) !default;
+$gray-1: var(--gray-1) !default;
+$gray-2: var(--gray-2) !default;
+$gray-3: var(--gray-3) !default;
+$gray-4: var(--gray-4) !default;
+$gray-5: var(--gray-5) !default;
+$primary: var(--primary) !default;
+$secondary: var(--secondary) !default;
+$info: var(--info) !default;
+$warning: var(--warning) !default;
+$danger: var(--danger) !default;
+$Success: var(--success) !default;
+$VERT: var(--vert) !default;
+$stepper-color:var(--stepper-color) !default;
+$expandable-items-bg:var(--expandable-items-bg) !default;
+$theme-colors: () !default;
+$theme-colors: map-merge((
+  "primary":     $primary,
+  "secondary":  $secondary,
+  "success":    $Success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "USE":        $Success,
+  "DRAFT":      $danger,
+  "SUSPENDED":  $warning,
+  "APPROVED": $Success,
+  "CREATECOMMAND": $warning,
+  "VERT":$VERT
+), $theme-colors);
+//User profile
+$user-profile-menu-width: 300px !default;
+
+//Header
+$header-height: 90px !default;
+$header-bg-color: $light !default;
+$header-box-shadow: none !default;
+$header-border:none !default;
+$header-logo-width: 208px !default;
+$header-avatar-width:45px !default;
+$header-avatar-height:45px !default;
+$header-icons-color: $gray !default;
+$header-icons-hover-color: $primary !default;
+$header-elements-marging-left: 10px !default;
+//Utils
+//text
+$text-muted: $gray-1 !default;
+
+//border
+$border-width:1px !default;
+$border-color:$gray-4 !default;
+
+//spacing
+$spacer: 15px !default;
+
+//radius
+$default-border-radius: 7px !default;
+
+//padding
+$default-padding: 15px !default;
+
+//card configuration
+$card-border-radius : $default-border-radius !default;
+$card-border-color: $gray-4 !default;
+$card-border-width: 1px !default;
+$card-border-type: solid !default;
+$card-gap: $spacer !default;
+$card-padding: $default-padding $default-padding $default-padding $default-padding !default;
+
+//Table
+$table-cell-padding: .5rem;
+$table-cell-padding-sm: .25rem;
+$table-cell-padding-y:        .5rem;
+$table-cell-padding-x:        .5rem;
+$table-cell-padding-y-sm:     .25rem;
+$table-cell-padding-x-sm:     .25rem;
+
+$table-cell-vertical-align:   top;
+
+$table-color:                 $dark;
+$table-bg:                    transparent;
+$table-accent-bg:             transparent;
+
+$table-th-font-weight:        500;
+$table-th-font-color: $gray-1 !default;
+
+$table-striped-color:         $table-color;
+$table-striped-bg-factor:     .05;
+$table-striped-bg:            rgba($dark, $table-striped-bg-factor);
+
+$table-active-color:          $table-color;
+$table-active-bg-factor:      .1;
+$table-active-bg:             rgba($dark, $table-active-bg-factor);
+
+$table-hover-color:           $table-color;
+$table-hover-bg-factor:       .075;
+$table-hover-bg:              rgba($dark, $table-hover-bg-factor);
+
+$table-border-factor:         .1;
+$table-border-width:          $border-width;
+$table-border-color:          $border-color;
+
+$table-striped-order:         odd;
+
+$table-group-separator-color: currentColor;
+
+$table-caption-color:         $text-muted;
+
+$table-bg-scale:              -80%;
+
+
+
+// Badges
+
+$badge-font-size:                   12px !default;
+$badge-font-weight:                 500 !default;
+$badge-padding-y:                   10px  !default;
+$badge-padding-x:                   10px !default;
+$badge-border-radius:               $default-border-radius !default;
+
+$badge-pill-padding-x:              .6em !default;
+// Use a higher than normal value to ensure completely rounded edges when
+// customizing padding or font-size on labels.
+$badge-pill-border-radius:          10rem !default;
+
+
+
+//forms
+$form-border-radius: $default-border-radius;
+$form-border-color: $gray-3;
+$form-border-width: 1px;
+$form-padding:$default-padding;
+$form-font-size: 13px !default;
+$form-label-color: $dark !important !default;
+
+
+
+//Button Alternatives
+@mixin btn-variant($class,$background) {
+    &.btn-#{$class}{
+        background: $background !important;
+    }
+    
+  }
+
+  @mixin btn-outline-variant($class,$background) {
+    &.btn-outline-#{$class}{
+        background: transparent;
+        border: 1px solid $background;
+        color: $background;
+        &:hover {
+          background:rgba($background,50%);
+          transition: all 0.3s ease;
+        }
+        &:active {
+          background:rgba($background,50%);
+        } 
+    }
+    
+  }
+
+  // stylelint-disable value-keyword-case
+$font-family-sans-serif:      'Poppins', sans-serif !default;
+$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:            $font-family-sans-serif !important !default;
+
+$overlay-effect:-1px 1px 10px 3000px #0000004a;

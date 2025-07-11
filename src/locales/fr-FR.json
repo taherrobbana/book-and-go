@@ -1,0 +1,43 @@
+{
+  "main": {
+    "title": "Bienvenue dans l'application",
+    "notFoundPage": {
+      "message": "Oops! Page non trouvée.",
+      "backToHome": "Retour à l'accueil"
+    }
+  },
+  "salles": {
+    "filters": {
+      "filters": "Filtres",
+      "building": "Bâtiment",
+      "Ability": "Capacité",
+      "projector": "Projecteur",
+      "whiteboard": "Tableau blanc",
+      "resetBtn": "Réinitialiser",
+      "searchBtn": "Rechercher"
+    },
+    "list": {
+      "title": "Liste des salles",
+      "addSalleBtn": "Ajouter une salle",
+      "searchPlaceholder": "Rechercher une salle",
+      "columns": {
+        "name": "Nom",
+        "building": "Bâtiment",
+        "capacity": "Capacité",
+        "projector": "Projecteur",
+        "whiteboard": "Tableau blanc"
+      }
+    },
+    "edit": {
+      "addSalleTitle": "Ajouter une salle",
+      "editSalleTitle": "Modifier la salle",
+      "name": "Nom de la salle",
+      "building": "Bâtiment",
+      "capacity": "Capacité",
+      "projector": "Projecteur",
+      "whiteboard": "Tableau blanc",
+      "saveBtn": "Enregistrer",
+      "cancelBtn": "Annuler"
+    }
+  }
+}

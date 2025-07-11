@@ -1,0 +1,103 @@
+.btn{
+  border-radius: 6px;
+  padding: 10px;
+  border-width: 0;
+  border-style: none;
+  background: $primary;
+  color: $white;
+  font-size: 12px;
+  box-shadow: none;
+ text-decoration: none !important;
+ &:hover{
+        filter: brightness(0.9) !important;
+ }
+  &:before{
+      box-shadow: none;
+  }
+  // button alternative class
+@include  btn-variant('primary',$primary);
+@include  btn-variant('secondary',$secondary);
+@include  btn-variant('info',$info);
+@include  btn-variant('warning',$warning);
+@include  btn-variant('danger',$danger);
+@include  btn-variant('success',$Success);
+@include  btn-variant('gray',$gray);
+@include  btn-variant('dark',$dark);
+
+
+@include  btn-outline-variant('primary',$primary);
+@include  btn-outline-variant('secondary',$secondary);
+@include  btn-outline-variant('info',$info);
+@include  btn-outline-variant('warning',$warning);
+@include  btn-outline-variant('danger',$danger);
+@include  btn-outline-variant('Success',$Success);
+@include  btn-outline-variant('gray',$gray);
+@include  btn-outline-variant('gray-1',$gray-1);
+@include  btn-outline-variant('dark',$dark);
+&.btn-action{
+    background: $gray-5 !important;
+    color: $primary !important; 
+}
+&.btn-delete {
+    background: $gray-5 !important;
+    color: $danger !important;
+}
+&.btn-sm{
+    padding: 5px !important;
+}
+}
+
+
+
+.btn2{
+    border-radius: 6px;
+    padding: 10px;
+    border-width: 0;
+    border-style: none;
+    background: #000742;
+    color: $white;
+    font-size: 12px;
+    box-shadow: none;
+   text-decoration: none !important;
+   &:hover{
+          filter: brightness(0.9) !important;
+   }
+    &:before{
+        box-shadow: none;
+    }
+  
+  
+    // button alternative class
+  @include  btn-variant('primary',#000742);
+  @include  btn-variant('secondary',$secondary);
+  @include  btn-variant('info',$info);
+  @include  btn-variant('warning',$warning);
+  @include  btn-variant('danger',$danger);
+  @include  btn-variant('success',$Success);
+  @include  btn-variant('gray',$gray);
+  @include  btn-variant('dark',$dark);
+  
+  
+  @include  btn-outline-variant('primary',$primary);
+  @include  btn-outline-variant('secondary',$secondary);
+  @include  btn-outline-variant('info',$info);
+  @include  btn-outline-variant('warning',$warning);
+  @include  btn-outline-variant('danger',$danger);
+  @include  btn-outline-variant('Success',$Success);
+  @include  btn-outline-variant('gray',$gray);
+  @include  btn-outline-variant('gray-1',$gray-1);
+  @include  btn-outline-variant('dark',$dark);
+  &.btn-action{
+      background: $gray-5 !important;
+      color: $primary !important; 
+  }
+  &.btn-delete {
+      background: $gray-5 !important;
+      color: $danger !important;
+  }
+  &.btn-sm{
+      padding: 5px !important;
+  }
+  }
+  
+  

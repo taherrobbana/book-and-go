@@ -1,0 +1,19 @@
+//
+// Visibility utilities
+//
+
+.visible {
+  @include invisible(visible);
+}
+
+.invisible {
+  @include invisible(hidden);
+}
+
+.disabled{
+  outline: 0 !important;
+  pointer-events: none !important;
+}
+.disabled-wrapper {
+  cursor: not-allowed !important;
+}
