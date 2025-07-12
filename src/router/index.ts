@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/home',
         name: 'home',
         meta: { role: 'all' },
-        component: () => import('@/components/NotFoundPage.vue')
+        component: () => import('@/components/Home.vue')
     },
     {
         path: '/login',

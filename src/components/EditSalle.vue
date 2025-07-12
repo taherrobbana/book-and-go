@@ -27,7 +27,43 @@
         </q-span>
         <q-btn flat round icon="clear" @click="closeDialog" />
       </div>
-      qqqqq
+      <div style="min-width: 500px; padding: 10px; display: flex; flex-direction: column">
+        <div style="padding: 10px; display: flex; flex-direction: column">
+          <label> Salle Name </label>
+          <q-input dense outlined v-model="salle.name" label="Salle Name">
+          </q-input>
+        </div>
+        <div style="padding: 10px; display: flex; flex-direction: column">
+          <label> Building </label>
+          <q-input dense outlined v-model="salle.building" label="Building">
+          </q-input>
+        </div>
+        <div style="padding: 10px; display: flex; flex-direction: column">
+          <label> Capacity </label>
+          <q-input
+            dense
+            outlined
+            v-model="salle.capacity"
+            type="number"
+            label="Capacity"
+          >
+          </q-input>
+        </div>
+        <div style="padding: 10px; display: flex; flex-direction: column">
+          <q-toggle
+            v-model="salle.whiteboard"
+            label="Has whiteboard"
+            class="q-mt-sm"
+          />
+        </div>
+        <div style="padding: 10px; display: flex; flex-direction: column">
+          <q-toggle
+            v-model="salle.projector"
+            label="Has projector"
+            class="q-mt-sm"
+          />
+        </div>
+      </div>
       <div
         style="
           background-color: #f7f7f7;

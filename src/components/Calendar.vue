@@ -70,6 +70,14 @@
       </template>
     </vue-cal>
   </div>
+  <EditEvent
+    :popupOpen="showEditEventDialog"
+    :persistent="true"
+    :fullHeight="false"
+    @closeDialog="showEditEventDialog = false"
+    :eventToEdit="eventToEdit"
+    :mode="mode"
+  />
 </template>
 
 <script lang="ts">
@@ -80,10 +88,13 @@ import store from "@/store";
 import { formatDate } from "@/utils/index";
 import { Notify } from "quasar";
 import { Dark } from "quasar";
+import EditEvent from "./EditEvent.vue"; // Assurez-vous que le chemin est correct
+import { eventType } from "@/types";
 
 @Options({
   components: {
     VueCal,
+    EditEvent,
   },
 })
 export default class Calendar extends Vue {
@@ -94,18 +105,19 @@ export default class Calendar extends Vue {
   }
 
   cellDblClick(event: any) {
-    console.log("Cell context menu", event);
-    Notify.create({
-      type: "info",
-      message: `Cellule cliquée à ${formatDate(
-        event,
-        "YYYY-MM-DD HH:mm",
-        "HH:mm"
-      )}`,
-    });
+    this.mode = "add";
+    this.eventToEdit = {
+      id: null,
+      start: event,
+      end: "",
+      title: "",
+      discription: "",
+      class: "",
+    };
+    this.showEditEventDialog = true;
   }
 
-  events: any = [
+  events: eventType[] = [
     {
       id: 1,
       start: "2025-06-20 14:00",
@@ -143,8 +155,13 @@ export default class Calendar extends Vue {
   get language() {
     return store.getters["userPreferencesModule/getLanguage"];
   }
-
+  showEditEventDialog: boolean = false;
+  eventToEdit: any = null;
+  mode: string = "";
   onEditEvent(event: any) {
+    this.mode = "edit";
+    this.eventToEdit = event;
+    this.showEditEventDialog = true;
     console.log("Événement à éditer", event);
     Notify.create({
       type: "positive",

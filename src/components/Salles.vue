@@ -214,14 +214,12 @@
 import { Options, Vue } from "vue-class-component";
 import { Notify } from "quasar";
 import { sallesListCols } from "@/utils/configuration/table-config";
-import Dialog from "./Dialog.vue";
 import Calendar from "./Calendar.vue";
 import EditSalle from "./EditSalle.vue";
 import store from "@/store";
 
 @Options({
   components: {
-    Dialog,
     Calendar,
     EditSalle,
   },
@@ -355,6 +353,7 @@ export default class Salles extends Vue {
   ];
 
   onEdit(row: any) {
+    this.salle = { ...row };
     this.title = "salles.edit.editSalleTitle";
     this.mode = "edit";
     this.salle = { ...row };
@@ -362,6 +361,7 @@ export default class Salles extends Vue {
   }
 
   addSalle() {
+    this.salle = { ...this.initSalle };
     this.title = "salles.edit.addSalleTitle";
     this.mode = "add";
     this.salle = {
