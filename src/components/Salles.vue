@@ -361,7 +361,7 @@ export default class Salles extends Vue {
   }
 
   addSalle() {
-    this.salle = { ...this.initSalle };
+    // this.salle = { ...this.initSalle };
     this.title = "salles.edit.addSalleTitle";
     this.mode = "add";
     this.salle = {
