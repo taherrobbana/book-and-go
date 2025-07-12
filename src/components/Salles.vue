@@ -150,7 +150,7 @@
                     ? 'green'
                     : props.row.capacity <= 50
                     ? 'blue'
-                    : ''
+                    : 'blue'
                 "
                 size="sm"
                 :label="props.row.capacity"
@@ -217,6 +217,7 @@ import { sallesListCols } from "@/utils/configuration/table-config";
 import Dialog from "./Dialog.vue";
 import Calendar from "./Calendar.vue";
 import EditSalle from "./EditSalle.vue";
+import store from "@/store";
 
 @Options({
   components: {
@@ -227,83 +228,93 @@ import EditSalle from "./EditSalle.vue";
 })
 export default class Salles extends Vue {
   search = "";
-  buildingFilter: any;
-  capacityFilter: any;
-  equipmentFilters = [];
-  filteredSalles: any;
-  rightDrawerOpen?: boolean = false;
-  Calendar = Calendar;
+  buildingFilter: string | null = null;
+  capacityFilter: string | null = null;
+  equipmentFilters: string[] = [];
+  rightDrawerOpen = false;
   salle: any = {
-    id: 0,
-    name: "001",
+    id: "",
+    name: "",
     building: "",
     capacity: 0,
     projector: false,
     whiteboard: false,
   };
-  title?: string
-  mode?: string
+  title = "";
+  mode = "";
 
-  created() {
-    this.filteredSalles = this.salles;
-  }
-
-  get rows() {
-    return this.filteredSalles;
-  }
-
-  buildings = ["Bâtiment A", "Bâtiment B", "Bâtiment C"];
+  // Options de capacité
   capacityOptions = ["5+", "10+", "20+", "50+"];
-  salles: any = [
-    {
-      id: 1,
-      name: "Salle A1.05",
-      building: "Bâtiment A",
-      capacity: 10,
-      projector: true,
-      whiteboard: true,
-    },
-    {
-      id: 2,
-      name: "Salle B2.12",
-      building: "Bâtiment B",
-      capacity: 20,
-      projector: true,
-      whiteboard: false,
-    },
-    {
-      id: 3,
-      name: "Salle C3.01",
-      building: "Bâtiment C",
-      capacity: 50,
-      projector: false,
-      whiteboard: true,
-    },
-    {
-      id: 4,
-      name: "Salle C3.01",
-      building: "Bâtiment C",
-      capacity: 50,
-      projector: false,
-      whiteboard: true,
-    },
-    {
-      id: 5,
-      name: "Salle C3.01",
-      building: "Bâtiment C",
-      capacity: 50,
-      projector: false,
-      whiteboard: true,
-    },
-    {
-      id: 6,
-      name: "Salle C3.01",
-      building: "Bâtiment C",
-      capacity: 50,
-      projector: false,
-      whiteboard: true,
-    },
-  ];
+
+  async created() {
+    await this.$store.dispatch("sallesModule/getSalles");
+  }
+
+  get salles() {
+    return this.$store.state.sallesModule.salles.map((salle: any) => ({
+      id: salle.numSalle,
+      name: salle.nomSalle,
+      building: salle.localisation,
+      capacity: salle.capaciteMax,
+      projector: salle.projecteur,
+      whiteboard: salle.tableau
+    }));
+  }
+
+  // Bâtiments uniques extraits des données
+  get buildings(): string[] {
+    const buildings = new Set<string>();
+    this.salles.forEach((salle: any) => {
+      if (salle.building) {
+        buildings.add(salle.building);
+      }
+    });
+    return Array.from(buildings).sort();
+  }
+
+  // Salles filtrées
+  get filteredSalles() {
+    let salles = this.salles;
+
+    // Filtre par recherche
+    if (this.search) {
+      const searchLower = this.search.toLowerCase();
+      salles = salles.filter((salle: any) => 
+        salle.name.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Filtre par bâtiment
+    if (this.buildingFilter) {
+      salles = salles.filter((salle: any) => 
+        salle.building === this.buildingFilter
+      );
+    }
+
+    // Filtre par capacité
+    if (this.capacityFilter) {
+      const minCapacity = parseInt(this.capacityFilter);
+      if (!isNaN(minCapacity)) {
+        salles = salles.filter((salle: any) => 
+          salle.capacity >= minCapacity
+        );
+      }
+    }
+
+    // Filtre par équipements
+    if (this.equipmentFilters.length > 0) {
+      salles = salles.filter((salle: any) => {
+        // Vérifie chaque équipement sélectionné
+        return this.equipmentFilters.every(equipment => {
+          if (equipment === 'projector') return salle.projector;
+          if (equipment === 'whiteboard') return salle.whiteboard;
+          return true;
+        });
+      });
+    }
+
+    return salles;
+  }
 
   sallesListCols = [
     {
@@ -346,12 +357,21 @@ export default class Salles extends Vue {
   onEdit(row: any) {
     this.title = "salles.edit.editSalleTitle";
     this.mode = "edit";
+    this.salle = { ...row };
     this.rightDrawerOpen = true;
-
   }
+
   addSalle() {
     this.title = "salles.edit.addSalleTitle";
     this.mode = "add";
+    this.salle = {
+      id: "",
+      name: "",
+      building: "",
+      capacity: 0,
+      projector: false,
+      whiteboard: false,
+    };
     this.rightDrawerOpen = true;
   }
 
@@ -363,14 +383,11 @@ export default class Salles extends Vue {
     });
   }
 
-  filterSalles() {
-    console.log("this.search:", this.search);
-    console.log("this.salles.length:", this.salles.length);
-    console.log("this.filteredSalles.length:", this.filteredSalles.length);
-    console.log("this.rows.length:", this.rows.length);
-    this.filteredSalles = this.salles.filter((salle: any) => {
-      return salle.name.toLowerCase().includes(this.search.toLowerCase());
-    });
+  resetFilters() {
+    this.search = '';
+    this.buildingFilter = null;
+    this.capacityFilter = null;
+    this.equipmentFilters = [];
   }
 
   closeDialog() {
